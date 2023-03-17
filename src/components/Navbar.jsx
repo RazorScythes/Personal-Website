@@ -6,6 +6,13 @@ import { useState } from "react";
 import Logo from '../assets/logo.png'
 import Avatar from '../assets/avatar.png'
 
+import { useLocation } from 'react-router-dom';
+
+const usePathname = () => {
+  const location = useLocation();
+  return location.pathname;
+}
+
 export const navLinks = [
   {
     id: "account",
@@ -103,6 +110,7 @@ const Navbar = () => {
           <img className="h-10 w-10 rounded-full ml-4 cursor-pointer object-cover" src={Avatar} alt="Profile" onClick={() => {
             setToggle(!toggle)
             setIsActive(false)
+            usePathname()
           }} />
           <div
             className={`${
