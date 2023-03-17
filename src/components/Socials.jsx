@@ -2,7 +2,7 @@ import React from 'react'
 import styles from "../style";
 import { Banner } from "./index"
 
-import hero_bg from '../assets/hero-bg.jpg'
+import { banner_bg } from '../assets';
 
 const Socials = () => {
   return (
@@ -22,7 +22,7 @@ const Socials = () => {
                         <Banner
                             heading = "keep training" 
                             description = "take part in exciting events" 
-                            background_image = {hero_bg}
+                            background_image = {banner_bg}
                             overlay_rgb_color = "223,32,76" 
                             button_text = "View Events"
                             button_link = "#"

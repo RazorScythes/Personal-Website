@@ -8,7 +8,7 @@ import crossfire from './crossfire.jpg'
 import minecraft from './minecraft.jpg'
 import watching_video from './watching_video.png'
 import image_not_found from './404_image.png'
-
+import banner_bg from './banner_bg.jpg'
 export {
     toram_online,
     genshin_impact,
@@ -19,5 +19,6 @@ export {
     crossfire,
     minecraft,
     watching_video,
-    image_not_found
+    image_not_found,
+    banner_bg
 }

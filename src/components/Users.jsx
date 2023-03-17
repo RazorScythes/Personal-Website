@@ -4,7 +4,11 @@ import Carousel from "react-multi-carousel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import "react-multi-carousel/lib/styles.css";
+import { Banner } from '../components/index'
+import { banner_bg } from '../assets';
 import Avatar from '../assets/avatar.png'
+
+
 const CustomRight = ({ onClick }) => {
 
   return (
@@ -190,6 +194,21 @@ const Users = () => {
                         </div>
                 </section>
             </div>
+        </div>
+        <div className={`${styles.marginX} ${styles.flexStart} relative z-10`}>
+          <div className={`${styles.boxWidth}`}>
+            <section className={`container mx-auto py-8 md:px-4 h-full font-poppins`}>
+              <Banner
+                  heading = "keep training" 
+                  description = "take part in exciting events" 
+                  background_image = {banner_bg}
+                  overlay_rgb_color = "103,87,214" 
+                  button_text = "View Events"
+                  button_link = "#"
+                  reverse = {true}
+              />
+            </section>
+          </div>
         </div>
     </div>
   )

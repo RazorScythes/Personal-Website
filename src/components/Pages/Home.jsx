@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from "../../style";
 
-import { Hero, Feature, GameList, News, Service, Socials, Users } from '../index'
+import { Hero, Feature, GameList, News, Service, Socials, Users, Footer } from '../index'
 import { toram_online, genshin_impact, minecraft, tower_of_fantasy, watching_video } from '../../assets';
 
 // Static Services Component 
@@ -61,6 +61,8 @@ const Home = () => {
             <Socials />
             <Users />
         </div>
+
+        <Footer />
     </div>
   )
 }

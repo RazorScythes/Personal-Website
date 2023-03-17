@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import hero_bg from '../assets/hero-bg.jpg'
 
 const Banner = ({ heading = "Heading", description = "Description Here", background_image, overlay_rgb_color = "223,32,76", button_text = "View More", button_link = "#", round_corner = true, reverse = false }) => {
 
@@ -10,7 +9,7 @@ const Banner = ({ heading = "Heading", description = "Description Here", backgro
 
     return (
             <div 
-                style={{ backgroundImage: `url(${hero_bg})`, borderRadius: round_corner ? "0.375rem" : "0" }}
+                style={{ backgroundImage: `url(${background_image})`, borderRadius: round_corner ? "0.375rem" : "0" }}
                 className="relative bg-cover bg-center md:mt-24 mt-12 w-full md:p-16 p-8 border-1 border-solid border-gray-400"
             >
                 <div style={{background: `linear-gradient(to right, rgb(${overlay_rgb_color}, 1), rgb(${overlay_rgb_color}, 0.5))`, borderRadius: round_corner ? "0.375rem" : "0" }} className="absolute inset-0 bg-black opacity-100"></div>

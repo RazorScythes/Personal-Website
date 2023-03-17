@@ -12,6 +12,7 @@ import Service from './Service'
 import Socials from './Socials'
 import Banner from './Banner'
 import Users from './Users'
+import Footer from './Footer'
 
 //PAGES
 import Home from './Pages/Home'
@@ -36,4 +37,5 @@ export {
     Socials,
     Banner,
     Users,
+    Footer,
 }
