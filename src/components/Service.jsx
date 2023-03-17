@@ -9,8 +9,8 @@ import { toram_online, genshin_impact, minecraft, tower_of_fantasy, watching_vid
 const Service = ({ heading3 = "Heading 3", heading2 = "Heading 2", description = "description", button_text = "View More", button_link = "#", data = [], reverse = false, icon_reverse = false }) => {
   return (
     <div className='md:my-8 my-0 relative'>
-        <div class="bg-transparent absolute w-full top-1/2 -translate-y-1/2">
-            <div class="h-96 relative">
+        <div className="bg-transparent absolute w-full top-1/2 -translate-y-1/2">
+            <div className="h-96 relative">
             <div className="absolute top-0 bg-[#111227] transform -skew-y-3 w-full h-full shadow-[21px_-21px_1px_1px_#111221,-21px_21px_1px_1px_#111221]"></div>
             </div>
         </div>

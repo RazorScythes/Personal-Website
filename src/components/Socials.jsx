@@ -7,8 +7,8 @@ import hero_bg from '../assets/hero-bg.jpg'
 const Socials = () => {
   return (
     <div className='md:my-8 my-0 relative pt-[200px]'>
-        <div class="bg-transparent absolute w-full">
-            <div class="h-96 relative">
+        <div className="bg-transparent absolute w-full">
+            <div className="h-96 relative">
             <div className="absolute top-0 bg-[#6757D6] transform skew-y-3 w-full h-full shadow-[21px_-21px_1px_1px_#5045A0,-21px_21px_1px_1px_#5045A0]"></div>
             </div>
         </div>

@@ -12,7 +12,16 @@ import Service from './Service'
 import Socials from './Socials'
 import Banner from './Banner'
 import Users from './Users'
+
+//PAGES
+import Home from './Pages/Home'
+import Games from './Pages/Games'
+import NotFound from './Pages/NotFound'
+
 export {
+    Home,
+    Games,
+    NotFound,
     Navbar,
     Hero,
     Login,

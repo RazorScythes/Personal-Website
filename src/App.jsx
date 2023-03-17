@@ -1,6 +1,6 @@
 import React from 'react'
-import { Navbar, Hero, Feature, GameList, Slider, News, Service, Socials, Users } from './components/index'
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Navbar, Home, Games, Login, NotFound } from './components/index'
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import styles from "./style";
 
@@ -18,62 +18,22 @@ const service_single_image = [
   { src: watching_video, alt: 'Video' }
 ]
 
+const URI_PATH_HOME = import.meta.env.VITE_URI_PATH_HOME
+
 const App = () => {
+
   return (
     <div className="w-full overflow-hidden bg-gray-900">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<>
-              <Navbar />  
-              <Hero />
 
-              <div className={`${styles.paddingX} ${styles.flexCenter}`}>
-                <div className={`${styles.boxWidth}`}>
-                  <Feature /> 
-                </div>
-              </div>
+          <Route path={`${URI_PATH_HOME}`} element={<><Navbar path={URI_PATH_HOME} /> <Outlet/></>}>
+              <Route index element={<Home />} />
+              <Route path="games" element={<Games />} />
+          </Route>  
 
-              <div className={`${styles.paddingX} ${styles.flexStart}`}>
-                <div className={`${styles.boxWidth}`}>
-                  <GameList />
-                  <News />
-                  
-                </div>
-              </div>
-
-              <div className='w-full h-full relative'>
-                <Service 
-                  heading3 = "Download Games"
-                  heading2 = "Games hidden from the internet"
-                  description = "Hidden games on the internet can be a treasure trove for gamers looking for new challenges."
-                  button_text = "View Games"
-                  button_link = "#"
-                  data = {service_multiple_image}
-                  reverse = {false}
-                  icon_reverse = {false}
-                />
-                <Service 
-                  heading3 = "Awesome Videos"
-                  heading2 = "Watch video without interruptions"
-                  description = "Hidden games on the internet can be a treasure trove for gamers looking for new challenges."
-                  button_text = "View More"
-                  button_link = "#"
-                  data = {service_single_image}
-                  reverse = {true}
-                  icon_reverse = {true}
-                />
-              </div>
-              
-              <div className='w-full h-full relative'>
-                <Socials />
-                <Users />
-              </div>
-          </>}>
-            <Route index element={<Navbar />} />
-            <Route path="/login" element={<Navbar />} />
-            <Route path="contact" element={<Navbar />} />
-            <Route path="*" element={<Navbar />} />
-          </Route>
+          <Route path={`${URI_PATH_HOME}/login`} element={<Login/>} />
+          <Route path={`*`} element={<NotFound/>} />
         </Routes>
       </BrowserRouter>
     </div>
