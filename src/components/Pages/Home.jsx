@@ -16,7 +16,7 @@ const service_single_image = [
   { src: watching_video, alt: 'Video' }
 ]
 
-const Home = () => {
+const Home = ({ path }) => {
   return (
     <div>
         <Hero />
@@ -62,7 +62,7 @@ const Home = () => {
             <Users />
         </div>
 
-        <Footer />
+        <Footer path={path}/>
     </div>
   )
 }

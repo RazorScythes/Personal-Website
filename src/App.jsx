@@ -28,7 +28,7 @@ const App = () => {
         <Routes>
 
           <Route path={`${URI_PATH_HOME}`} element={<><Navbar path={URI_PATH_HOME} /> <Outlet/></>}>
-              <Route index element={<Home />} />
+              <Route index element={<Home path={URI_PATH_HOME}/>} />
               <Route path="games" element={<Games />} />
           </Route>  
 

@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { faHome, faUser, faFolder, faGamepad, faStore, faBoxArchive, faPhone, faGear, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { nav_links, user_navLinks } from "../constants";
@@ -8,12 +7,9 @@ import { nav_links, user_navLinks } from "../constants";
 import Logo from '../assets/logo.png'
 import Avatar from '../assets/avatar.png'
 
-import { useLocation } from 'react-router-dom';
-
 const Navbar = ({ path }) => {
   const [isActive, setIsActive] = useState(false);
   const [toggle, setToggle] = useState(false)
-  const location = useLocation()
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
   

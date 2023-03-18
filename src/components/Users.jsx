@@ -89,7 +89,7 @@ const responsive = {
 
 const Users = () => {
   return (
-    <div className='md:my-8 my-0 relative pt-[50px] pb-64'>
+    <div className='md:my-8 my-0 relative pt-[50px] pb-0'>
         <div className={`md:mx-12 ${styles.flexStart} relative z-10`}>
             <div className={`${styles.boxWidth}`}>
                 <section className={`mx-auto py-8 md:px-4 h-full font-poppins`}>
