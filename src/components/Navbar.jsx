@@ -1,18 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { nav_links, user_navLinks } from "../constants";
+import { faUser, faGear, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import { logout } from "../actions/auth";
+import { useDispatch, useSelector } from 'react-redux'
 
 import Logo from '../assets/logo.png'
 import Avatar from '../assets/avatar.png'
 
 const Navbar = ({ path }) => {
+  const dispatch = useDispatch()
+  const navigate  = useNavigate()
+
   const [isActive, setIsActive] = useState(false);
   const [toggle, setToggle] = useState(false)
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')))
   
+  const sign_out = () => {
+    dispatch(logout())
+    navigate(`${path}/login`)
+    setUser(null)
+  }
+
   return (
     <nav className="relative flex items-center justify-between flex-wrap bg-gray-800 p-6 z-10">
       <Link to={`${path}`}>
@@ -41,16 +53,24 @@ const Navbar = ({ path }) => {
                 } p-6 bg-gray-800 absolute top-20 right-0 mx-4 my-2 min-w-[140px] rounded-xl sidebar text-sm font-poppins`}
               >
                 <ul className="list-none flex justify-end items-start flex-1 flex-col">
-                  {user_navLinks.map((nav, index) => (
                     <li
-                      key={nav.id}
-                      className={`cursor-pointer text-white hover:text-blue-200
-                      } ${index === user_navLinks.length - 1 ? "mb-0" : "mb-4"}`}
+                      className={`cursor-pointer text-white hover:text-blue-200 mb-4`}
                     >
-                      <FontAwesomeIcon icon={nav.icon} className="mr-2" />
-                      <a href={`#${nav.id}`}>{nav.title}</a>
+                      <FontAwesomeIcon icon={faUser} className="mr-2" />
+                      <a href={`${path}/${user.result.username}`}>Account</a>
                     </li>
-                  ))}
+                    <li
+                      className={`cursor-pointer text-white hover:text-blue-200 mb-4`}
+                    >
+                      <FontAwesomeIcon icon={faGear} className="mr-2" />
+                      <a href={`${path}/${user.result.username}`}>Settings</a>
+                    </li>
+                    <li
+                      className={`cursor-pointer text-white hover:text-blue-200 mb-0`}
+                    >
+                      <FontAwesomeIcon icon={faRightFromBracket} className="mr-2" />
+                      <button onClick={() => sign_out()}>Logout</button>
+                    </li>
                 </ul>
               </div>
           </>
@@ -88,7 +108,6 @@ const Navbar = ({ path }) => {
                 <img className="h-10 w-10 rounded-full ml-4 cursor-pointer object-cover" src={Avatar} alt="Profile" onClick={() => {
                   setToggle(!toggle)
                   setIsActive(false)
-                  usePathname()
                 }} />
                 <div
                   className={`${
@@ -96,16 +115,24 @@ const Navbar = ({ path }) => {
                   } p-6 bg-gray-800 absolute top-[90px] right-0 mx-2 my-2 min-w-[140px] rounded-xl sidebar text-sm font-poppins`}
                 >
                   <ul className="list-none flex justify-end items-start flex-1 flex-col">
-                    {user_navLinks.map((nav, index) => (
                       <li
-                        key={nav.id}
-                        className={`cursor-pointer text-white hover:text-blue-200
-                        } ${index === user_navLinks.length - 1 ? "mb-0" : "mb-4"}`}
+                        className={`cursor-pointer text-white hover:text-blue-200 mb-4`}
                       >
-                        <FontAwesomeIcon icon={nav.icon} className="mr-2" />
-                        <a href={`#${nav.id}`}>{nav.title}</a>
+                        <FontAwesomeIcon icon={faUser} className="mr-2" />
+                        <a href={`${path}/${user.result.username}`}>Account</a>
                       </li>
-                    ))}
+                      <li
+                        className={`cursor-pointer text-white hover:text-blue-200 mb-4`}
+                      >
+                        <FontAwesomeIcon icon={faGear} className="mr-2" />
+                        <a href={`${path}/${user.result.username}`}>Settings</a>
+                      </li>
+                      <li
+                        className={`cursor-pointer text-white hover:text-blue-200 mb-0`}
+                      >
+                        <FontAwesomeIcon icon={faRightFromBracket} className="mr-2" />
+                        <button onClick={() => sign_out()}>Logout</button>
+                      </li>
                   </ul>
                 </div>
             </>

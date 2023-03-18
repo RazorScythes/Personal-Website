@@ -1,29 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 
-function LoginForm() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import { useNavigate  } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { signin } from "../actions/auth";
+
+function LoginForm({ path }) {
+  const navigate  = useNavigate()
+  const dispatch = useDispatch()
+
+  const auth = useSelector((state) => state.auth)
+  const user = JSON.parse(localStorage.getItem('profile'))
+
+  const [form, setForm] = useState({
+    username: '',
+    password: ''
+  })
   const [rememberMe, setRememberMe] = useState(false);
-  const [formErrors, setFormErrors] = useState({});
+
+  useEffect(() => {
+      document.title = "Login"
+      if(!user) return
+
+      navigate(`${path}`)
+  }, [user])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    // Validate form
-    const errors = {};
-    if (!email) {
-      errors.email = "Email is required";
-    }
-    if (!password) {
-      errors.password = "Password is required";
-    }
-    setFormErrors(errors);
-
-    // Submit form if there are no errors
-    if (Object.keys(errors).length === 0) {
-      console.log("Form submitted");
-    }
+    dispatch(signin(form))
   };
 
   return (
@@ -40,9 +44,13 @@ function LoginForm() {
               Welcome Back
             </h2>
           </div>
+          
           <form onSubmit={handleSubmit} className="mt-8 space-y-6">
             <div className="rounded-md shadow-sm -space-y-px">
               <div>
+                {
+                  auth.error && <span className="text-red-600 font-semibold">Invalid Credentials</span>
+                }
                 <label htmlFor="email" className="sr-only">
                   Email address
                 </label>
@@ -51,26 +59,17 @@ function LoginForm() {
                     <FaEnvelope className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   </div>
                   <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    autoComplete="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    id="username"
+                    name="username"
+                    type="text"
+                    autoComplete="username"
+                    value={form.username}
+                    onChange={(e) => setForm({...form, username: e.target.value})}
                     required
-                    className={`appearance-none rounded-none relative block w-full px-3 py-2 border ${
-                      formErrors.email
-                        ? "border-red-500 placeholder-red-300 focus:ring-red-500 focus:border-red-500"
-                        : "border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                    } sm:text-sm my-4`}
+                    className={`appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm my-4`}
                     placeholder="Email address"
                   />
                 </div>
-                {formErrors.email && (
-                  <p className="mt-2 text-sm text-red-600" id="email-error">
-                    {formErrors.email}
-                  </p>
-                )}
               </div>
               <div>
                 <label htmlFor="password" className="sr-only">
@@ -85,22 +84,13 @@ function LoginForm() {
                     name="password"
                     type="password"
                     autoComplete="current-password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={form.password}
+                    onChange={(e) => setForm({...form, password: e.target.value})}
                     required
-                    className={`appearance-none rounded-none relative block w-full px-3 py-2 border ${
-                      formErrors.password
-                        ? "border-red-500 placeholder-red-300 focus:ring-red-500 focus:border-red-500"
-                        : "border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-                    } sm:text-sm`}
+                    className={`appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm my-4`}
                     placeholder="Password"
                   />
                 </div>
-                {formErrors.password && (
-                  <p className="mt-2 text-sm text-red-600" id="password-error">
-                    {formErrors.password}
-                  </p>
-                )}
               </div>
             </div>
     
